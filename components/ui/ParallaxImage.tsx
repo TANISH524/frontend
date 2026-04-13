@@ -1,6 +1,7 @@
 "use client";
 
 import Image, { type ImageProps } from "next/image";
+import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 
@@ -9,6 +10,7 @@ type ParallaxImageProps = Omit<ImageProps, "style"> & {
   strength?: number;
   imageStyle?: React.CSSProperties;
   fallbackSrc?: string;
+  href?: string;
 };
 
 export function ParallaxImage({
@@ -16,12 +18,18 @@ export function ParallaxImage({
   strength = 18,
   imageStyle,
   fallbackSrc = "/placeholder.svg",
+  href,
   ...props
 }: ParallaxImageProps) {
-  const ref = useRef<HTMLDivElement | null>(null);
+  const router = useRouter();
+  const ref = useRef<HTMLElement | null>(null);
   const raf = useRef<number | null>(null);
   const [offset, setOffset] = useState(0);
   const [safeSrc, setSafeSrc] = useState(props.src);
+
+  const setRef = (node: HTMLElement | null) => {
+    ref.current = node;
+  };
 
   useEffect(() => {
     setSafeSrc(props.src);
@@ -55,21 +63,49 @@ export function ParallaxImage({
     };
   }, [strength]);
 
+  const content = (
+    <Image
+      {...props}
+      src={safeSrc}
+      onError={() => {
+        // Only fallback for string srcs; StaticImport is already safe.
+        if (typeof props.src === "string") setSafeSrc(fallbackSrc);
+      }}
+      style={{
+        transform: `translate3d(0, ${offset}px, 0) scale(1.06)`,
+        willChange: "transform",
+        ...imageStyle,
+      }}
+    />
+  );
+
+  if (href) {
+    return (
+      <div
+        ref={setRef}
+        role="link"
+        tabIndex={0}
+        className={cn(
+          "relative block h-full w-full overflow-hidden cursor-pointer",
+          "focus-visible:outline-none",
+          className
+        )}
+        onClick={() => router.push(href)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            router.push(href);
+          }
+        }}
+      >
+        {content}
+      </div>
+    );
+  }
+
   return (
-    <div ref={ref} className={cn("relative h-full w-full overflow-hidden", className)}>
-      <Image
-        {...props}
-        src={safeSrc}
-        onError={() => {
-          // Only fallback for string srcs; StaticImport is already safe.
-          if (typeof props.src === "string") setSafeSrc(fallbackSrc);
-        }}
-        style={{
-          transform: `translate3d(0, ${offset}px, 0) scale(1.06)`,
-          willChange: "transform",
-          ...imageStyle,
-        }}
-      />
+    <div ref={setRef} className={cn("relative h-full w-full overflow-hidden", className)}>
+      {content}
     </div>
   );
 }

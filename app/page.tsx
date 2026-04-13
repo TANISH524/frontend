@@ -1,21 +1,22 @@
 import Link from "next/link";
 import { formatPrice } from "@/lib/utils";
 import { ParallaxImage } from "@/components/ui/ParallaxImage";
+import { perfumesData } from "@/lib/perfumesData";
 
 export default function HomePage() {
   return (
     <div>
       {/* Hero */}
       <section className="relative overflow-hidden border-b border-white/40 bg-white/65 backdrop-blur-xl">
-        <div className="pointer-events-none absolute inset-0">
+        <div className="pointer-events-none absolute inset-0 z-0">
           <div className="absolute -left-24 -top-24 h-72 w-72 rounded-full bg-[color:var(--color-accent)]/15 blur-3xl" />
           <div className="absolute -right-24 top-10 h-80 w-80 rounded-full bg-sky-400/12 blur-3xl" />
           <div className="absolute left-1/2 top-0 h-[520px] w-[520px] -translate-x-1/2 rounded-full bg-yellow-300/10 blur-3xl" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(255,255,255,0.55),transparent_55%)]" />
         </div>
 
-        <div className="container-page relative grid grid-cols-1 items-center gap-10 py-14 md:grid-cols-2 md:py-20">
-          <div>
+        <div className="container-page relative z-10 grid grid-cols-1 items-center gap-10 py-14 md:grid-cols-2 md:py-20">
+          <div className="relative z-10">
      
 
             <h1 className="mb-6 text-5xl font-semibold leading-[0.95] tracking-tight text-neutral-950 sm:text-6xl">
@@ -30,7 +31,7 @@ export default function HomePage() {
               packaged like collectible design objects.
             </p>
 
-            <div className="flex flex-wrap items-center gap-3">
+            <div className="relative z-10 flex flex-wrap items-center gap-3">
               <Link
                 href="/products"
                 className="btn btn-primary px-7 py-3 font-semibold"
@@ -161,28 +162,9 @@ export default function HomePage() {
           </div>
 
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {[
-              {
-                name: "Midnight Velvet",
-                price: formatPrice(6499),
-                img: "https://images.unsplash.com/photo-1585386959984-a41552231693?auto=format&fit=crop&w=1800&q=92",
-                tag: "Amber • Cocoa • Musk",
-              },
-              {
-                name: "Citrus Atelier",
-                price: formatPrice(5199),
-                img: "https://images.unsplash.com/photo-1587017539504-67cfbddac569?auto=format&fit=crop&w=1800&q=92",
-                tag: "Bergamot • Tea • Cedar",
-              },
-              {
-                name: "Rose Noir",
-                price: formatPrice(6999),
-                img: "https://images.unsplash.com/photo-1615634260167-c8cdede054de?auto=format&fit=crop&w=1800&q=92",
-                tag: "Rose • Iris • Amber",
-              },
-            ].map((p) => (
+            {perfumesData.slice(0, 3).map((p) => (
               <div
-                key={p.name}
+                key={p.id}
                 className="group relative overflow-hidden rounded-[26px] border border-neutral-200 bg-white/85 shadow-[0_14px_40px_rgba(0,0,0,0.10)] transition-all hover:-translate-y-1 hover:shadow-[0_22px_60px_rgba(0,0,0,0.16)]"
               >
                 <div className="absolute -left-16 -top-16 h-40 w-40 rounded-full bg-gradient-to-br from-pink-300/40 via-yellow-200/20 to-sky-300/30 blur-2xl" />
@@ -190,7 +172,8 @@ export default function HomePage() {
                   <div className="relative aspect-[4/3] w-full overflow-hidden">
                     <ParallaxImage
                       alt={p.name}
-                      src={p.img}
+                      src={p.image}
+                      href={`/product/${p.id}`}
                       fill
                       sizes="(min-width: 1024px) 360px, 100vw"
                       className="absolute inset-0 transition-transform duration-500 group-hover:scale-110"
@@ -204,12 +187,12 @@ export default function HomePage() {
                   <div>
                     <p className="text-sm font-semibold text-neutral-950">{p.name}</p>
                     <p className="mt-1 text-xs font-semibold uppercase tracking-[0.22em] text-neutral-500">
-                      {p.tag}
+                      Signature • Modern • Layerable
                     </p>
-                    <p className="mt-2 text-sm text-neutral-700">{p.price}</p>
+                    <p className="mt-2 text-sm text-neutral-700">{formatPrice(p.price)}</p>
                   </div>
                   <Link
-                    href="/products"
+                    href={`/product/${p.id}`}
                     className="btn btn-primary px-4 py-2 text-xs font-semibold"
                   >
                     Shop
