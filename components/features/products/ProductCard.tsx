@@ -45,21 +45,17 @@ export function ProductCard({ perfume }: ProductCardProps) {
         <div className="flex items-start justify-between gap-3">
           <div className="min-w-0">
             <Link href={`/products/${perfume.id}`} className="block">
-              <h3 className="truncate text-sm font-semibold text-neutral-950 dark:text-neutral-50 decoration-[color:var(--color-accent)] underline-offset-4 group-hover:underline">
+              <h3 className="truncate text-sm font-semibold text-neutral-950 decoration-[color:var(--color-accent)] underline-offset-4 group-hover:underline">
                 {perfume.name}
               </h3>
             </Link>
-            <p className="mt-1 text-sm font-semibold text-neutral-950 dark:text-neutral-50">
-              {formatPrice(perfume.price)}
-            </p>
-            <p className="mt-1 text-xs text-neutral-600 dark:text-neutral-300">
-              Free shipping over {formatPrice(3999)}
-            </p>
+            <p className="mt-1 text-sm font-semibold text-neutral-950">{formatPrice(perfume.price)}</p>
+            <p className="mt-1 text-xs text-neutral-600">Free shipping over {formatPrice(3999)}</p>
           </div>
 
           <Link
             href={`/products/${perfume.id}`}
-            className="btn btn-ghost -mr-2 -mt-2 h-9 w-9 rounded-full px-0 opacity-0 transition-opacity group-hover:opacity-100 dark:text-neutral-200"
+            className="btn btn-ghost -mr-2 -mt-2 h-9 w-9 rounded-full px-0 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity"
             aria-label={`View ${perfume.name}`}
             title="View details"
           >

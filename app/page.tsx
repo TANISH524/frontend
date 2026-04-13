@@ -6,7 +6,7 @@ export default function HomePage() {
   return (
     <div>
       {/* Hero */}
-      <section className="relative overflow-hidden border-b border-white/40 bg-white/35 backdrop-blur-xl">
+      <section className="relative overflow-hidden border-b border-white/40 bg-white/65 backdrop-blur-xl">
         <div className="pointer-events-none absolute inset-0">
           <div className="absolute -left-24 -top-24 h-72 w-72 rounded-full bg-[color:var(--color-accent)]/15 blur-3xl" />
           <div className="absolute -right-24 top-10 h-80 w-80 rounded-full bg-sky-400/12 blur-3xl" />
@@ -16,20 +16,10 @@ export default function HomePage() {
 
         <div className="container-page relative grid grid-cols-1 items-center gap-10 py-14 md:grid-cols-2 md:py-20">
           <div>
-            <div className="mb-5 flex flex-wrap items-center gap-2">
-              <span className="badge">
-                New drops weekly
-              </span>
-              <span className="badge border-transparent bg-[color:var(--color-accent)] text-[color:var(--color-accent-foreground)]">
-                Eau de Parfum
-              </span>
-              <span className="badge">
-                Gift-ready packaging
-              </span>
-            </div>
+     
 
             <h1 className="mb-6 text-5xl font-semibold leading-[0.95] tracking-tight text-neutral-950 sm:text-6xl">
-              <span className="[font-family:var(--font-display),ui-serif,Georgia,serif]">Scent</span>{" "}
+         Scent
               that feels
               <br />
               <span className="text-[color:var(--color-accent)]">expensive</span> on skin.

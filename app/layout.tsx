@@ -22,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.className} ${playfair.variable} bg-neutral-50 text-neutral-900 antialiased`}
+        className={`${inter.className} ${playfair.variable} antialiased`}
       >
         <QueryProvider>
           <ToastProvider>

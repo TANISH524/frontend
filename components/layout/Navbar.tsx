@@ -9,26 +9,26 @@ export function Navbar() {
   const { count, isHydrated } = useCart();
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/40 bg-white/55 backdrop-blur-xl">
+    <header className="sticky top-0 z-50 border-b border-white/10 bg-white/55 backdrop-blur-xl">
       <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-6">
         <Link href="/" className="text-sm font-semibold tracking-widest uppercase">
           <span className="text-neutral-950">Ess</span>
           <span className="text-[color:var(--color-accent)]">ence</span>
         </Link>
-        <nav className="flex items-center gap-6 text-sm text-neutral-600">
-          <Link href="/about" className="hover:text-neutral-900 transition-colors">
+        <nav className="flex items-center gap-4 sm:gap-6 text-sm text-neutral-700">
+          <Link href="/about" className="hover:text-neutral-950 transition-colors">
             About
           </Link>
-          <Link href="/products" className="hover:text-neutral-900 transition-colors">
+          <Link href="/products" className="hover:text-neutral-950 transition-colors">
             Shop
           </Link>
-          <Link href="/journal" className="hover:text-neutral-900 transition-colors">
+          <Link href="/journal" className="hover:text-neutral-950 transition-colors">
             Journal
           </Link>
-          <Link href="/contact" className="hover:text-neutral-900 transition-colors">
+          <Link href="/contact" className="hover:text-neutral-950 transition-colors">
             Contact
           </Link>
-          <Link href="/cart" className="relative hover:text-neutral-900 transition-colors">
+          <Link href="/cart" className="relative hover:text-neutral-950 transition-colors">
             <ShoppingBag size={18} />
             {!isHydrated ? (
               <Skeleton className="absolute -top-1.5 -right-2 h-4 w-4 rounded-full" />

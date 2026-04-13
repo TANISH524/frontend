@@ -1,14 +1,16 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-background: #fafafa;
-  --color-foreground: #0f0f10;
+  /* Light theme: crisp porcelain + soft neutral */
+  --color-background: #fbfbfc;
+  --color-foreground: #121214;
   --color-surface: #ffffff;
-  --color-muted: #f5f5f5;
-  --color-border: #e5e5e5;
-  --color-accent: #ff2d7a;
+  --color-muted: #f6f6f7;
+  --color-border: #e7e7ea;
+  /* Accent: refined raspberry (less neon) */
+  --color-accent: #c81e5c;
   --color-accent-foreground: #ffffff;
-  --color-ring: color-mix(in srgb, var(--color-accent) 26%, transparent);
+  --color-ring: color-mix(in srgb, var(--color-accent) 22%, transparent);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-display: var(--font-display);
@@ -26,34 +28,31 @@
 .skeleton {
   position: relative;
   overflow: hidden;
-  background-color: color-mix(in srgb, var(--color-foreground) 7%, var(--color-border));
-  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--color-foreground) 6%, transparent);
+  background-color: color-mix(in srgb, var(--color-foreground) 6%, var(--color-border));
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--color-foreground) 7%, transparent),
+    0 1px 0 color-mix(in srgb, var(--color-surface) 70%, transparent);
 
   &::after {
     content: "";
     position: absolute;
     inset: 0;
     transform: translateX(-100%);
-    animation: shimmer 1.4s ease-in-out infinite;
+    animation: shimmer 1.55s ease-in-out infinite;
     background: linear-gradient(
       90deg,
       transparent,
-      color-mix(in srgb, var(--color-accent) 16%, rgba(255, 255, 255, 0.85)),
+      color-mix(in srgb, var(--color-accent) 10%, rgba(255, 255, 255, 0.92)),
       transparent
     );
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-background: #0a0a0a;
-    --color-foreground: #ededed;
-    --color-surface: #0f0f10;
-    --color-muted: #141416;
-    --color-border: #262626;
-    --color-accent: #ff4d8f;
-    --color-accent-foreground: #0b0b0c;
-    --color-ring: color-mix(in srgb, var(--color-accent) 28%, transparent);
+@media (prefers-reduced-motion: reduce) {
+  .skeleton::after {
+    animation: none;
+    transform: none;
+    opacity: 0.35;
   }
 }
 
@@ -76,18 +75,18 @@ body::before {
   pointer-events: none;
   z-index: 0;
   background:
-    radial-gradient(900px 500px at 8% 10%, color-mix(in srgb, var(--color-accent) 22%, transparent), transparent 55%),
-    radial-gradient(800px 520px at 90% 18%, rgba(56, 189, 248, 0.12), transparent 55%),
-    radial-gradient(900px 520px at 60% 92%, rgba(250, 204, 21, 0.10), transparent 60%),
+    radial-gradient(920px 520px at 10% 10%, color-mix(in srgb, var(--color-accent) 14%, transparent), transparent 62%),
+    radial-gradient(860px 560px at 92% 14%, rgba(56, 189, 248, 0.07), transparent 65%),
+    radial-gradient(980px 620px at 56% 96%, rgba(250, 204, 21, 0.06), transparent 68%),
     repeating-linear-gradient(
       135deg,
-      rgba(17, 24, 39, 0.04) 0px,
-      rgba(17, 24, 39, 0.04) 1px,
+      rgba(17, 24, 39, 0.02) 0px,
+      rgba(17, 24, 39, 0.02) 1px,
       transparent 1px,
       transparent 12px
     );
-  mix-blend-mode: multiply;
-  opacity: 0.9;
+  mix-blend-mode: normal;
+  opacity: 0.18;
 }
 
 main {
@@ -97,7 +96,7 @@ main {
 
 @layer base {
   :root {
-    color-scheme: light dark;
+    color-scheme: light;
   }
 
   *:focus-visible {
@@ -111,22 +110,34 @@ main {
   }
 
   .card {
-    @apply rounded-2xl border border-neutral-200/50 bg-white/80 shadow-sm backdrop-blur transition-all;
+    border-radius: 1rem;
+    border: 1px solid color-mix(in srgb, var(--color-foreground) 10%, transparent);
+    background: color-mix(in srgb, var(--color-surface) 78%, transparent);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    backdrop-filter: blur(14px);
+    transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
   }
 
   .card:hover {
     border-color: color-mix(in srgb, var(--color-accent) 18%, var(--color-border));
     box-shadow:
-      0 18px 60px rgba(0, 0, 0, 0.12),
+      0 18px 60px rgba(0, 0, 0, 0.18),
       0 0 0 1px color-mix(in srgb, var(--color-accent) 18%, transparent);
   }
 
   .card-strong {
-    @apply rounded-2xl border border-neutral-200 bg-white/85 shadow-[0_18px_60px_rgba(0,0,0,0.12)] backdrop-blur-xl;
+    border-radius: 1rem;
+    border: 1px solid color-mix(in srgb, var(--color-foreground) 14%, transparent);
+    background: color-mix(in srgb, var(--color-surface) 86%, transparent);
+    box-shadow: 0 18px 70px rgba(0, 0, 0, 0.18);
+    backdrop-filter: blur(22px);
   }
 
   .badge {
-    @apply inline-flex items-center gap-1 rounded-full border border-neutral-200 bg-white/80 px-3 py-1 text-[11px] font-semibold tracking-wide text-neutral-800 shadow-sm;
+    @apply inline-flex items-center gap-1 rounded-full px-3 py-1 text-[11px] font-semibold tracking-wide shadow-sm;
+    border: 1px solid color-mix(in srgb, var(--color-foreground) 12%, transparent);
+    background: color-mix(in srgb, var(--color-surface) 78%, transparent);
+    color: color-mix(in srgb, var(--color-foreground) 92%, transparent);
   }
 
   .btn {
@@ -150,19 +161,29 @@ main {
   }
 
   .btn-secondary {
-    @apply border border-neutral-300 bg-white/80 text-neutral-900 shadow-sm hover:-translate-y-0.5 hover:bg-white hover:shadow-md;
+    border: 1px solid color-mix(in srgb, var(--color-foreground) 14%, transparent);
+    background: color-mix(in srgb, var(--color-surface) 76%, transparent);
+    color: var(--color-foreground);
+    @apply shadow-sm hover:-translate-y-0.5 hover:shadow-md;
   }
 
   .btn-ghost {
-    @apply text-neutral-700 hover:bg-neutral-100/80;
+    color: color-mix(in srgb, var(--color-foreground) 88%, transparent);
+    @apply hover:bg-neutral-100/30;
   }
 
   .input {
-    @apply h-11 w-full rounded-md border border-neutral-300 bg-white px-4 text-sm text-neutral-900 outline-none transition-colors placeholder:text-neutral-400;
+    @apply h-11 w-full rounded-md px-4 text-sm outline-none transition-colors;
+    border: 1px solid color-mix(in srgb, var(--color-foreground) 14%, transparent);
+    background: color-mix(in srgb, var(--color-surface) 76%, transparent);
+    color: var(--color-foreground);
   }
 
   .textarea {
-    @apply w-full rounded-md border border-neutral-300 bg-white px-4 py-3 text-sm text-neutral-900 outline-none transition-colors placeholder:text-neutral-400;
+    @apply w-full rounded-md px-4 py-3 text-sm outline-none transition-colors;
+    border: 1px solid color-mix(in srgb, var(--color-foreground) 14%, transparent);
+    background: color-mix(in srgb, var(--color-surface) 76%, transparent);
+    color: var(--color-foreground);
   }
 
   .input:focus-visible,
