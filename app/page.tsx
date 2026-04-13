@@ -45,22 +45,7 @@ export default function HomePage() {
                 Our Story
               </Link>
             </div>
-            <dl className="mt-10 grid grid-cols-3 gap-4 text-center sm:max-w-md sm:text-left">
-              <div className="card p-4">
-                <dt className="text-[11px] uppercase tracking-[0.25em] text-neutral-500">
-                  Longevity
-                </dt>
-                <dd className="mt-1 text-sm font-semibold text-neutral-950">8–12 hours</dd>
-              </div>
-              <div className="card p-4">
-                <dt className="text-[11px] uppercase tracking-[0.25em] text-neutral-500">Sillage</dt>
-                <dd className="mt-1 text-sm font-semibold text-neutral-950">Compliment-core</dd>
-              </div>
-              <div className="card p-4">
-                <dt className="text-[11px] uppercase tracking-[0.25em] text-neutral-500">Packaging</dt>
-                <dd className="mt-1 text-sm font-semibold text-neutral-950">Collector</dd>
-              </div>
-            </dl>
+        
           </div>
 
           <div className="relative">
