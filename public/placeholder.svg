@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f5f5f5"/>
+      <stop offset="1" stop-color="#e9e9ea"/>
+    </linearGradient>
+    <linearGradient id="shine" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset="0.5" stop-color="#ffffff" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <rect x="140" y="180" width="920" height="840" rx="64" fill="#ffffff" fill-opacity="0.55" stroke="#d9d9db" stroke-width="6"/>
+
+  <g opacity="0.7">
+    <path d="M600 365c-88 0-160 72-160 160v240c0 88 72 160 160 160s160-72 160-160V525c0-88-72-160-160-160Z"
+      fill="#cfcfd2"/>
+    <rect x="510" y="300" width="180" height="86" rx="28" fill="#c2c2c6"/>
+    <rect x="475" y="520" width="250" height="20" rx="10" fill="#bdbdc2"/>
+    <rect x="475" y="565" width="300" height="18" rx="9" fill="#c7c7cc"/>
+    <rect x="475" y="610" width="220" height="18" rx="9" fill="#c7c7cc"/>
+  </g>
+
+  <g opacity="0.45">
+    <path d="M180 980c140-130 250-195 420-225 215-40 330 35 420 165v110H180Z" fill="#d7d7da"/>
+  </g>
+
+  <rect x="0" y="0" width="1200" height="1200" fill="url(#shine)" opacity="0.35"/>
+</svg>
+
