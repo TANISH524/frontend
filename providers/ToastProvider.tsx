@@ -32,12 +32,12 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
   return (
     <ToastContext.Provider value={value}>
       {children}
-      <div className="fixed bottom-5 right-5 z-[100] flex w-[min(420px,calc(100vw-2.5rem))] flex-col gap-3">
+      <div className="fixed inset-x-4 bottom-4 z-[100] flex max-w-[520px] flex-col gap-3 sm:inset-x-auto sm:bottom-5 sm:right-5 sm:w-[420px]">
         {toasts.map((t) => (
           <div
             key={t.id}
             className={cn(
-              "card-strong p-4",
+              "card-strong p-3 sm:p-4",
               "border-white/40 bg-white/55 text-neutral-900",
               "shadow-[0_18px_70px_rgba(0,0,0,0.18)]"
             )}

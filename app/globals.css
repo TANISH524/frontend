@@ -63,6 +63,13 @@ body {
     "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
 }
 
+@media (max-width: 640px) {
+  body {
+    font-size: 14px;
+    line-height: 1.45;
+  }
+}
+
 ::selection {
   background: color-mix(in srgb, var(--color-accent) 22%, transparent);
 }
@@ -142,6 +149,15 @@ main {
 
   .btn {
     @apply inline-flex items-center justify-center gap-2 rounded-md px-5 py-2.5 text-sm font-medium transition-all;
+  }
+
+  @media (max-width: 640px) {
+    .btn {
+      font-size: 0.8125rem;
+      line-height: 1.1;
+      padding-top: 0.6rem;
+      padding-bottom: 0.6rem;
+    }
   }
 
   .btn:focus-visible {

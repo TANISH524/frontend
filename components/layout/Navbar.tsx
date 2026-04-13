@@ -11,11 +11,11 @@ export function Navbar() {
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-white/55 backdrop-blur-xl">
       <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-6">
-        <Link href="/" className="text-sm font-semibold tracking-widest uppercase">
+        <Link href="/" className="text-xs sm:text-sm font-semibold tracking-widest uppercase">
           <span className="text-neutral-950">Ess</span>
           <span className="text-[color:var(--color-accent)]">ence</span>
         </Link>
-        <nav className="flex items-center gap-4 sm:gap-6 text-sm text-neutral-700">
+        <nav className="flex items-center gap-4 sm:gap-6 text-xs sm:text-sm text-neutral-700">
           <Link href="/about" className="hover:text-neutral-950 transition-colors">
             About
           </Link>
